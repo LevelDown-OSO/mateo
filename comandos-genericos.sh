@@ -120,3 +120,36 @@ no shutdown
 exit
 
 
+# 6. Configurar access trunk entre switches
+
+# D1 -
+en
+conf t
+
+int g1/0/1
+switchport mode trunk
+switchport trunk allowed vlan all
+no shutdown
+exit
+
+# SW 1, 2, 3 -
+
+en
+conf t
+
+int range f0/2 - 3
+switchport mode trunk
+switchport trunk allowed vlan all
+no shutdown
+exit
+
+# D2, 3
+
+en
+conf t
+
+int range g1/0/1 - 8
+switchport mode trunk
+switchport trunk allowed vlan all
+no shutdown
+exit
