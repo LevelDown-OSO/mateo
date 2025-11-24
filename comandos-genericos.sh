@@ -46,3 +46,24 @@ exit
 vlan 99
 name NATIVA
 exit
+
+# metemos todos los comandos de arriba en todos los switches menos el core este 'core' tendra ademas las ip's
+
+
+# 5. Configuracion conexion de vlan entre dispositivos finales y su switch inmediato
+
+# D1
+en
+conf t
+
+int g1/0/2
+switchport mode access
+switchport access vlan 80
+no shutdown
+exit
+
+int g1/0/3
+switchport mode access
+switchport access vlan 60
+no shutdown
+exit
