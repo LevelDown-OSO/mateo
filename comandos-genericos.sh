@@ -67,3 +67,56 @@ switchport mode access
 switchport access vlan 60
 no shutdown
 exit
+
+# SW 1, 2, 3
+en
+conf t
+
+int f0/1
+switchport mode access
+switchport access vlan 30
+no shutdown
+exit
+
+
+# SW 3
+en
+conf t
+
+int f0/4
+switchport mode access
+switchport access vlan 50
+no shutdown
+exit
+
+int f0/5
+switchport mode access
+switchport access vlan 40
+no shutdown
+exit
+
+
+# D2
+
+en
+conf t
+
+int range g1/0/6 - 7
+switchport mode access
+switchport access vlan 70
+no shutdown
+exit
+
+
+# D3
+
+en
+conf t
+
+int range g1/0/6 - 8
+switchport mode access
+switchport access vlan 70
+no shutdown
+exit
+
+
