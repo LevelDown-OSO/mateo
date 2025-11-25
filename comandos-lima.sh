@@ -50,17 +50,31 @@ name WIFI_CLIENTES
 exit
 
 int vlan 60
-ip address 172.28.43.1 255.255.255.0
+ip address 172.28.42.129 255.255.255.224
 exit
 
 vlan 70
 name SERVIDORES
 exit
 
+int vlan 70
+ip address 172.28.42.161 255.255.255.240
+exit
+
 vlan 80
 name WIFI_EJECUTIVOS
+exit
+
+int vlan 80
+ip address 172.28.41.193 255.255.255.192
 exit
 
 vlan 99
 name NATIVA
 exit
+
+int vlan 99
+ip address 172.28.42.97 255.255.255.224
+exit
+
+ip routing

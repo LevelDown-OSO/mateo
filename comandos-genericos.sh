@@ -118,7 +118,7 @@ switchport mode access
 switchport access vlan 70
 no shutdown
 exit
-
+# ME QUEDE ACA GAAA
 
 # 6. Configurar access trunk entre switches
 
@@ -137,13 +137,13 @@ exit
 en
 conf t
 
-int range f0/2 - 3
+int range g0/1 - 2
 switchport mode trunk
 switchport trunk allowed vlan all
 no shutdown
 exit
 
-# D2
+# D2, D3
 
 en
 conf t
@@ -154,15 +154,6 @@ switchport trunk allowed vlan all
 no shutdown
 exit
 
-# D3
-en
-conf t
-
-int range g1/0/1 - 5
-switchport mode trunk
-switchport trunk allowed vlan all
-no shutdown
-exit
 
 # Switch core
 # conexion con los otros swithces pero no con el router
