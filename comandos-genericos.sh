@@ -168,3 +168,5 @@ exit
 
 # 7 configurar vlan con ip en core CHECKPOINT
 #  revisar comando para cada sede "AGREGAR VLAN IP A CORE"
+
+# 8 Configurar Router on Stick
