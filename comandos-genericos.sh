@@ -143,7 +143,7 @@ switchport trunk allowed vlan all
 no shutdown
 exit
 
-# D2, 3
+# D2, 3 -
 
 en
 conf t
@@ -153,3 +153,18 @@ switchport mode trunk
 switchport trunk allowed vlan all
 no shutdown
 exit
+
+
+# Switch core
+# conexion con los otros swithces pero no con el router
+en
+conf t
+
+int range g1/0/2 - 4
+switchport mode trunk
+switchport trunk allowed vlan all
+no shutdown
+exit
+
+
+# 7 configurar vlan con ip en core CHECKPOINT
