@@ -118,7 +118,6 @@ switchport mode access
 switchport access vlan 70
 no shutdown
 exit
-# ME QUEDE ACA GAAA
 
 # 6. Configurar access trunk entre switches
 
