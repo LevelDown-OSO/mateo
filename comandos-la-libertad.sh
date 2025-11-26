@@ -91,28 +91,33 @@ ip routing
 
 # PASO 8 configuracion de router con switch core
 # switch CORE
-en
-conf t
-
 interface g1/0/1
  no switchport
- description ENLACE_WAN_HACIA_ROUTER
- ip address 172.28.36.1 255.255.255.252
+ description ENLACE_HACIA_ROUTER_LIBERTAD
+ ip address 172.28.36.13 255.255.255.252
  no shutdown
  exit
 
-ip route 0.0.0.0 0.0.0.0 172.28.36.2
+ip route 0.0.0.0 0.0.0.0 172.28.36.14
 exit
 
 # router
 
 en
 conf t
-hostname Router_Lima
+hostname Router_LaLibertad
 
 interface g0/0
- ip address 172.28.36.2 255.255.255.252
+ description LAN_HACIA_CORE_LIBERTAD
+ ip address 172.28.36.14 255.255.255.252
  no shutdown
  exit
 
-ip route 172.28.40.0 255.255.252.0 172.28.36.1
+ip route 172.28.44.0 255.255.252.0 172.28.36.13
+
+router rip
+ version 2
+ no auto-summary
+ network 172.28.0.0
+ redistribute static
+ exit
