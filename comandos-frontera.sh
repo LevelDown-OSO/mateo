@@ -3,181 +3,124 @@
 
 
 # R0 FRONTERA X
-
+en
+conf t
+router rip
+version 2
 default-information originate
-
 no auto-summary
-
-
-
-# R_ISP X
-
-en
-
-conf t
-
-hostname R_ISP
-
-
-
-# R0 -> Switch 1 X
-
-en
-
-conf t
-
-int f0/1
-
-ip add 192.168.1.1 255.255.255.0
-
-no shutdown
-
 exit
 
+# Router Frontera - ISP 1
+# Router Frontera
+interface s0/0/0
+ ip address 11.13.20.1 255.255.255.252
+ no shutdown
+ exit
 
-
-# R_ISP -> Switch 2 X
-
+# ISP 1
 en
-
 conf t
 
-int f0/1
+interface s0/2/0
+ ip address 11.13.20.2 255.255.255.252
+ clock rate 128000
+ no shutdown
+ exit
 
-ip add 14.196.179.1 255.255.255.0
-
-no shutdown
-
-exit
-
-
-
-# R1 -> Switch 3 X
-
+# Router Frontera - ISP 2 Backup
+# Router Frontera
+interface s0/1/1
+ ip address 11.13.20.5 255.255.255.252
+ no shutdown
+ exit
+# ISP 2
 en
-
 conf t
 
-int f0/1
-
-ip add 192.168.3.1 255.255.255.0
-
-no shutdown
-
-exit
+interface s0/2/0
+ ip address 11.13.20.6 255.255.255.252
+ clock rate 128000
+ no shutdown
+ exit
 
 
-
-# Probar networking de end -> router
-
-
-
-# R0 -> R1 X
+# Router frontera
 
 en
-
 conf t
-
-int s0/0/0
-
-ip add 192.168.6.1 255.255.255.0
-
-no shutdown
-
-exit
+ip route 0.0.0.0 0.0.0.0 11.13.20.2
+ip route 0.0.0.0 0.0.0.0 11.13.20.6 5
 
 
+# ISP 1
+ip route 172.28.0.0 255.255.0.0 11.13.20.1
 
-# R1 -> R0 X
+# ISP 2
+ip route 172.28.0.0 255.255.0.0 11.13.20.5
 
+
+
+
+# gemini
+# roputer lima
+conf t
+interface Serial0/0/0
+ shutdown
+
+ no shutdown
+ exit
+
+# isp 1
 en
-
 conf t
-
-int s0/0/0
-
-ip add 192.168.6.2 255.255.255.0
-
-no shutdown
-
-exit
+interface Serial0/2/0
+ encapsulation hdlc
+ clock rate 128000
+ no shutdown
+ exit
 
 
-
-# R0 -> R_ISP XX
-
+# ADASDASD
+# rOUTER lima
 en
-
 conf t
 
-int f0/0
+! Configuración de RIP para propagar internet a la LAN
+router rip
+ version 2
+ default-information originate
+ no auto-summary
+ exit
 
-ip add 205.0.0.1 255.255.255.0
+! Interfaz hacia ISP 1 (Principal)
+interface s0/0/0
+ description ENLACE_ISP1_PRINCIPAL
+ ip address 11.13.20.1 255.255.255.252
+ no shutdown
+ exit
 
-no shutdown
+! Interfaz hacia ISP 2 (Backup)
+interface s0/1/1
+ description ENLACE_ISP2_BACKUP
+ ip address 11.13.20.5 255.255.255.252
+ no shutdown
+ exit
 
-exit
+! Rutas estáticas (El truco del Backup)
+ip route 0.0.0.0 0.0.0.0 11.13.20.2
+ip route 0.0.0.0 0.0.0.0 11.13.20.6 5
 
 
-
-ip route 0.0.0.0 0.0.0.0 205.0.0.2
-
-
-
-# R_ISP -> R0
-
+#ISP 1
 en
-
 conf t
+interface s0/2/0
+ description CONEXION_CLIENTE_LIMA
+ ip address 11.13.20.2 255.255.255.252
+ clock rate 128000
+ no shutdown
+ exit
 
-int f0/0
-
-ip add 205.0.0.2 255.255.255.0
-
-no shutdown
-
-exit
-
-
-
-ip route 192.168.0.0 255.255.248.0 205.0.0.1
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# ver tabla de routing
-
-sho ip rou
-
-
-
-
-
-# configuracion del dns
-
-# prender https y asignar name y ip del web server (REVISAR EL CORRECTO IP)
-
-
-
-# configuracion ftp
-
-# agregar username y password minimo 2 usuarios
-
-username ftpuser password ftpuser
-
-
-
-# acceder ftp
-
-# ftp <ip-ftp>
+! Ruta de regreso para saber cómo responder a tu red interna
+ip route 172.28.0.0 255.255.0.0 11.13.20.1
