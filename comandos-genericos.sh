@@ -172,3 +172,6 @@ exit
 # 8 Configurar Router on Stick
 
 # 9 configuracion entre routers
+
+# Configuracion del router frontera
+# En este caso es Lima
