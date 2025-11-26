@@ -78,3 +78,6 @@ ip address 172.28.42.97 255.255.255.224
 exit
 
 ip routing
+
+
+# configuracion de router on stick
