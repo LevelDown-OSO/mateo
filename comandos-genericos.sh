@@ -170,3 +170,5 @@ exit
 #  revisar comando para cada sede "AGREGAR VLAN IP A CORE"
 
 # 8 Configurar Router on Stick
+
+# 9 configuracion entre routers

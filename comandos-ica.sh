@@ -75,3 +75,33 @@ exit
 
 ip routing
 end
+
+
+# PASO 8
+# configurcion de router a switch core ica
+#
+# Switch Core
+en
+conf t
+
+interface g1/0/1
+ no switchport
+ description ENLACE_HACIA_ROUTER_ICA
+ ip address 172.28.36.5 255.255.255.252
+ no shutdown
+ exit
+
+ip route 0.0.0.0 0.0.0.0 172.28.36.6
+
+# Router
+en
+conf t
+hostname Router_Ica
+
+interface g0/0
+ description ENLACE_HACIA_CORE_ICA
+ ip address 172.28.36.6 255.255.255.252
+ no shutdown
+ exit
+
+ip route 172.28.48.0 255.255.252.0 172.28.36.5

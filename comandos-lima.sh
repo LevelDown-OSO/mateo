@@ -80,4 +80,30 @@ exit
 ip routing
 
 
-# configuracion de router on stick
+# PASO 8 configuracion de router con switch core
+# switch CORE
+en
+conf t
+
+interface g1/0/1
+ no switchport
+ description ENLACE_WAN_HACIA_ROUTER
+ ip address 172.28.36.1 255.255.255.252
+ no shutdown
+ exit
+
+ip route 0.0.0.0 0.0.0.0 172.28.36.2
+exit
+
+# router
+
+en
+conf t
+hostname Router_Lima
+
+interface g0/0
+ ip address 172.28.36.2 255.255.255.252
+ no shutdown
+ exit
+
+ip route 172.28.40.0 255.255.252.0 172.28.36.1
