@@ -9,4 +9,16 @@
 # mediante la vlan
 
 
+# dhcp
 
+# switch core
+en
+conf t
+
+int vlan 60
+ip helper-address 172.28.42.164
+exit
+
+int vlan 80
+ip helper-address 172.28.42.164
+exit
