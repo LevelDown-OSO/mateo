@@ -16,16 +16,12 @@ exit
 enable
 configure terminal
 
-! 1. Crear el usuario para el ISP (mismo password)
 username ISP1 password cisco
 
-! 2. Entrar a la interfaz conectada al ISP
 interface s0/0/0
 
-! 3. Activar la petición de autenticación PAP
 ppp authentication pap
 
-! 4. Enviar mis credenciales a ISP 1
 ppp pap sent-username Router_Lima password cisco
 
 end
