@@ -68,6 +68,12 @@ switchport access vlan 60
 no shutdown
 exit
 
+int g1/0/4
+switchport mode access
+switchport access vlan 10
+no shutdown
+exit
+
 # SW 1, 2, 3
 en
 conf t
