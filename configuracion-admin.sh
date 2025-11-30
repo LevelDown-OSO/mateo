@@ -6,17 +6,17 @@
 en
 conf t
 ip access-list standard FILTRO_GESTION
-permit host 172.28.49.18
+permit host 172.28.45.66
 deny any
 exit
 
 int vlan 99
-ip add 172.28.49.24 255.255.255.240
+ip add 172.28.45.69 255.255.255.240
 no shutdown
 exit
-ip default-gateway 172.28.49.17
+ip default-gateway 172.28.45.65
 
-hostname SW3_Ica
+hostname Router_La_Libertad
 ip domain-name miempresa.com
 username admin secret admin
 crypto key generate rsa
