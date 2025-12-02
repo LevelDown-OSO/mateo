@@ -110,6 +110,8 @@ ip route 172.28.48.0 255.255.252.0 172.28.36.5
 # configuracion del dhcp para conectar las redes de wifi
 # switch core
 ! --- WIFI EJECUTIVOS (VLAN 80) ---
+en
+conf t
 interface vlan 80
  ip helper-address 172.28.49.44
  no shutdown
