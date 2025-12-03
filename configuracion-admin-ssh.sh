@@ -6,17 +6,18 @@
 en
 conf t
 ip access-list standard FILTRO_GESTION
-permit host 172.28.45.66
+permit host 172.28.45.66 # IP DE LA PC QUE CONTROLA TODO
 deny any
 exit
 
 int vlan 99
-ip add 172.28.45.69 255.255.255.240
+ip add 172.28.45.69 255.255.255.240 # IP PARA EL DISPOSITIVO
 no shutdown
 exit
 ip default-gateway 172.28.45.65
 
 hostname Router_La_Libertad
+
 ip domain-name miempresa.com
 username admin secret admin
 crypto key generate rsa

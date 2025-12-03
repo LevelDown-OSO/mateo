@@ -3,27 +3,18 @@
 en
 conf t
 username Router_Lima password cisco
-
 interface s0/2/0
-
 ppp authentication pap
-
 ppp pap sent-username ISP1 password cisco
-
 exit
 # Lima
 
 enable
 configure terminal
-
 username ISP1 password cisco
-
 interface s0/0/0
-
 ppp authentication pap
-
 ppp pap sent-username Router_Lima password cisco
-
 end
 # COMPLETADO
 
